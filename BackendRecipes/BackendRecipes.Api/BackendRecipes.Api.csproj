@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Ninject.MVC5" Version="3.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BackendRecipes.Domain\BackendRecipes.Domain.csproj" />
+    <ProjectReference Include="..\BackendRecipes.Infrastructure\BackendRecipes.Infrastructure.csproj" />
+  </ItemGroup>
+
+
+</Project>
