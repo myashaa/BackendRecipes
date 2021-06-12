@@ -19,7 +19,7 @@ namespace BackendRecipes.Infrastructure.Repositories
                 new Recipe
                 {
                     Name = "Мороженное",
-                    Description = "Вкусное ом-ом-ом",
+                    Description = "Вкусное ам-ам-ам",
                     Id = 1,
                     ImageUrl = ""
                 }

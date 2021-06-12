@@ -1,5 +1,7 @@
-﻿using BackendRecipes.Domain.Recipe;
+﻿using BackendRecipes.Api.Dto;
+using BackendRecipes.Domain.Recipe;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace BackendRecipes.Api.Controllers
 {
@@ -17,7 +19,18 @@ namespace BackendRecipes.Api.Controllers
         [Route( "" )]
         public IActionResult GetAllRecipes()
         {
-            return Ok(_recipeService.GetRecipes() );
+            List<RecipeDto> recipes = _recipeService.GetRecipes().ConvertAll(x => ConvertToRecipeDto(x));
+            RecipeDto ConvertToRecipeDto(Recipe recipe)
+            {
+                return new RecipeDto
+                {
+                    Name = recipe.Name,
+                    Description = recipe.Description,
+                    Id = recipe.Id,
+                    ImageUrl = recipe.ImageUrl
+                };
+            }
+            return Ok( recipes );
         }
     }
 }
