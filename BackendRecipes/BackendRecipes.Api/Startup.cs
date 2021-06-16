@@ -1,3 +1,4 @@
+using BackendRecipes.Api.Ñonverters;
 using BackendRecipes.Domain.Recipe;
 using BackendRecipes.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
@@ -22,6 +23,7 @@ namespace BackendRecipes.Api
         {
             services.AddControllers();
             services.AddScoped<IRecipeService, RecipeService>();
+            services.AddScoped<IRecipeConverter, RecipeConverter>();
             services.AddSingleton<IRecipeRepository, MemoryRecipeRepository>();
         }
 

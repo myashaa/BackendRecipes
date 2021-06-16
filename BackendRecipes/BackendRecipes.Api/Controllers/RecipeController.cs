@@ -1,5 +1,8 @@
-﻿using BackendRecipes.Domain.Recipe;
+﻿using BackendRecipes.Api.Dto;
+using BackendRecipes.Api.Сonverters;
+using BackendRecipes.Domain.Recipe;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace BackendRecipes.Api.Controllers
 {
@@ -8,16 +11,19 @@ namespace BackendRecipes.Api.Controllers
     public class RecipeController : ControllerBase
     {
         private IRecipeService _recipeService;
-        public RecipeController( IRecipeService recipeService )
+        private IRecipeConverter _recipeConverter;
+        public RecipeController(IRecipeService recipeService, IRecipeConverter recipeConverter)
         {
             _recipeService = recipeService;
+            _recipeConverter = recipeConverter;
         }
 
         [HttpGet]
         [Route( "" )]
         public IActionResult GetAllRecipes()
         {
-            return Ok(_recipeService.GetRecipes() );
+            List<RecipeDto> recipes = _recipeService.GetRecipes().ConvertAll(x => _recipeConverter.ConvertToRecipeDto(x));
+            return Ok( recipes );
         }
     }
 }
