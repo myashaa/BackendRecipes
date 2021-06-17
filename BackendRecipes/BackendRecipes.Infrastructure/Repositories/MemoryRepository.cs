@@ -9,14 +9,24 @@ namespace BackendRecipes.Infrastructure.Repositories
     {
         protected static List<T> _table = new List<T>();
 
-        public void Create( T item )
+        public void Add( T item )
         {
             _table.Add( item );
+        }
+
+        public void AddRange( IEnumerable<T> items )
+        {
+            throw new NotImplementedException();
         }
 
         public void Delete( int id )
         {
             //_table.Remove( id );
+        }
+
+        public void Delete( T id )
+        {
+            throw new NotImplementedException();
         }
 
         public IEnumerable<T> Find( Func<T, bool> predicate )

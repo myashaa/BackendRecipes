@@ -20,9 +20,9 @@ namespace BackendRecipes.Infrastructure.Repositories
                     Name = "Клубничная панна-котта",
                     Description = "Десерт, который невероятно легко и быстро готовится. Советую подавать его порционно в красивых бокалах, украсив взбитыми сливками, свежими ягодами и мятой.",
                     CookingTimeInMinutes = 35,
-                    TotalPersons = 5,
-                    Ingredients = new List<Ingredient>(),
-                    Steps = new List<Step>()
+                    TotalPersons = 5
+                    //Ingredients = new List<Ingredient>(),
+               //     Steps = new List<Step>()
                 },
                 new Recipe
                 {
@@ -35,9 +35,9 @@ namespace BackendRecipes.Infrastructure.Repositories
                     Name = "Мясные фрикадельки",
                     Description = "Мясные фрикадельки в томатном соусе - несложное и вкусное блюдо, которым можно порадовать своих близких.",
                     CookingTimeInMinutes = 90,
-                    TotalPersons = 4,
-                    Ingredients = new List<Ingredient>(),
-                    Steps = new List<Step>()
+                    TotalPersons = 4
+                  //  Ingredients = new List<Ingredient>(),
+                  //  Steps = new List<Step>()
                 }
             };
         }

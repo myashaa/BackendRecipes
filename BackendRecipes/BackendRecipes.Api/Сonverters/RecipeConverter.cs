@@ -20,7 +20,7 @@ namespace BackendRecipes.Api.Сonverters
                 CookingTimeInMinutes = recipe.CookingTimeInMinutes,
                 TotalPersons = recipe.TotalPersons,
                 Ingredients = recipe.Ingredients.ConvertAll(x => ConvertToIngredientDto(x)),
-                Steps = recipe.Steps.ConvertAll(x => ConvertToStepDto(x))
+              //  Steps = recipe.Steps.ConvertAll(x => ConvertToStepDto(x))
             };
         }
         private IngredientDto ConvertToIngredientDto(Ingredient ingredient)

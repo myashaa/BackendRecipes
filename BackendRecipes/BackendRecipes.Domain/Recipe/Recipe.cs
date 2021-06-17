@@ -15,6 +15,6 @@ namespace BackendRecipes.Domain.Recipe
         public long CookingTimeInMinutes { get; set; }
         public long TotalPersons { get; set; }
         public List<Ingredient> Ingredients { get; set; }
-        public List<Step> Steps { get; set; }
+     //   public List<Step> Steps { get; set; }
     }
 }
