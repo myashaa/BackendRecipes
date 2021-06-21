@@ -3,14 +3,16 @@ using BackendRecipes.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BackendRecipes.Infrastructure.Migrations
 {
     [DbContext(typeof(BackendRecipesDbContext))]
-    partial class BackendRecipesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210620114004_AddStep")]
+    partial class AddStep
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
