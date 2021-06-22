@@ -33,5 +33,13 @@ namespace BackendRecipes.Api.Controllers
             RecipeDto recipe = _recipeConverter.ConvertToRecipeDto(_recipeService.GetRecipe(id));
             return Ok( recipe );
         }
+
+        [HttpGet]
+        [Route("recipes/{category}/{searchText}")]
+        public IActionResult SearchAllRecipes( string category, string searchText )
+        {
+            List<RecipeDto> recipes = _recipeService.SearchRecipes(category, searchText).ConvertAll(r => _recipeConverter.ConvertToRecipeDto(r));
+            return Ok(recipes);
+        }
     }
 }

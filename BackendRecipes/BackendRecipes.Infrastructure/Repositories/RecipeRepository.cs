@@ -28,5 +28,33 @@ namespace BackendRecipes.Infrastructure.Repositories
                 .Include(r => r.Steps)
                 .FirstOrDefault(r => r.Id == id);
         }
+
+        public IEnumerable<Recipe> SearchAll( string category, string searchText )
+        {
+            if (category == "name") { 
+            return Entities
+                .Include(r => r.Ingredients)
+                .Include(r => r.Steps)
+                .Where(r => r.Name == searchText)
+                .ToList();
+            }
+            if (category == "tag")
+            {
+                return Entities
+                    .Include(r => r.Ingredients)
+                    .Include(r => r.Steps)
+                    .Where(r => r.Tags == searchText)
+                    .ToList();
+            }
+            if (category == "author")
+            {
+                return Entities
+                    .Include(r => r.Ingredients)
+                    .Include(r => r.Steps)
+                    .Where(r => r.Author == searchText)
+                    .ToList();
+            }
+            return null;
+        }
     }
 }
