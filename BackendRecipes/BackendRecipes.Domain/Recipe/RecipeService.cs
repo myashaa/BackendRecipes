@@ -17,5 +17,11 @@ namespace BackendRecipes.Domain.Recipe
             var recipes = _recipeRepository.GetAll();
             return recipes.ToList();
         }
+
+        public Recipe GetRecipe( long id )
+        {
+            var recipe = _recipeRepository.GetById(id);
+            return recipe;
+        }
     }
 }

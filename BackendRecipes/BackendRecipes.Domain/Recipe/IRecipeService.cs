@@ -5,5 +5,6 @@ namespace BackendRecipes.Domain.Recipe
     public interface IRecipeService
     {
         List<Recipe> GetRecipes();
+        Recipe GetRecipe( long id );
     }
 }

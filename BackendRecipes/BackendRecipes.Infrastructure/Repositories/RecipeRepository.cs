@@ -21,9 +21,12 @@ namespace BackendRecipes.Infrastructure.Repositories
                 .ToList();
         }
 
-        public List<Recipe> GetById( string name )
+        public Recipe GetById( long id )
         {
-            return Entities.Where( e => e.Name.Contains( name ) ).ToList();
+            return Entities
+                .Include(r => r.Ingredients)
+                .Include(r => r.Steps)
+                .FirstOrDefault(r => r.Id == id);
         }
     }
 }
