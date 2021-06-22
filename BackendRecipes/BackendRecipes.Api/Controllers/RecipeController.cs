@@ -22,7 +22,7 @@ namespace BackendRecipes.Api.Controllers
         [Route( "" )]
         public IActionResult GetAllRecipes()
         {
-            List<RecipeDto> recipes = _recipeService.GetRecipes().ConvertAll(x => _recipeConverter.ConvertToRecipeDto(x));
+            List<RecipeDto> recipes = _recipeService.GetRecipes().ConvertAll(r => _recipeConverter.ConvertToRecipeDto(r));
             return Ok( recipes );
         }
     }

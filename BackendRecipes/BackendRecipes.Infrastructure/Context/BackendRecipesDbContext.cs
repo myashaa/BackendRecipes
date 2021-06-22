@@ -13,6 +13,7 @@ namespace BackendRecipes.Infrastructure.Context
         {
             modelBuilder.ApplyConfiguration( new RecipeConfiguration() );
             modelBuilder.ApplyConfiguration( new IngredientConfiguration() );
+            modelBuilder.ApplyConfiguration(new StepConfiguration());
         }
     }
 } 

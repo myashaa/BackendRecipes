@@ -17,6 +17,7 @@ namespace BackendRecipes.Infrastructure.Repositories
         {
             return Entities
                 .Include( r => r.Ingredients )
+                .Include(r => r.Steps)
                 .ToList();
         }
 
