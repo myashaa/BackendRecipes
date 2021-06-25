@@ -7,7 +7,6 @@ namespace BackendRecipes.Domain.Recipe
         IEnumerable<Recipe> GetAll();
         Recipe GetById( long id );
         IEnumerable<Recipe> SearchAll( string category, string searchText );
-
-        void Add( Recipe recipe );
+        void AddNew( Recipe recipe );
     }
 }

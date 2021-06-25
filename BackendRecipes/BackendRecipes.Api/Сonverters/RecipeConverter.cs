@@ -39,5 +39,39 @@ namespace BackendRecipes.Api.Сonverters
                 Description = step.Description
             };
         }
+        public Recipe ConvertToRecipe(RecipeDto recipeDto)
+        {
+            return new Recipe
+            {
+                Id = recipeDto.Id,
+                ImageUrl = recipeDto.ImageUrl,
+                Author = recipeDto.Author,
+                Tags = recipeDto.Tags,
+                Favorites = recipeDto.Favorites,
+                Likes = recipeDto.Likes,
+                Name = recipeDto.Name,
+                Description = recipeDto.Description,
+                CookingTimeInMinutes = recipeDto.CookingTimeInMinutes,
+                TotalPersons = recipeDto.TotalPersons,
+                Ingredients = recipeDto.Ingredients.ConvertAll(r => ConvertToIngredient(r)),
+                Steps = recipeDto.Steps.ConvertAll(r => ConvertToStep(r))
+            };
+        }
+        private Ingredient ConvertToIngredient(IngredientDto ingredientDto)
+        {
+            return new Ingredient
+            {
+                Title = ingredientDto.Title,
+                Items = ingredientDto.Items
+            };
+        }
+        private Step ConvertToStep(StepDto stepDto)
+        {
+            return new Step
+            {
+                Number = stepDto.Number,
+                Description = stepDto.Description
+            };
+        }
     }
 }

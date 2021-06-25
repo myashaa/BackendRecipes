@@ -29,5 +29,10 @@ namespace BackendRecipes.Domain.Recipe
             var recipes = _recipeRepository.SearchAll(category, searchText);
             return recipes.ToList();
         }
+
+        public void AddRecipe(Recipe recipe)
+        {
+            _recipeRepository.AddNew(recipe);
+        }
     }
 }

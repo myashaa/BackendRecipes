@@ -7,5 +7,6 @@ namespace BackendRecipes.Domain.Recipe
         List<Recipe> GetRecipes();
         Recipe GetRecipe( long id );
         List<Recipe> SearchRecipes( string category, string searchText );
+        void AddRecipe(Recipe recipe);
     }
 }

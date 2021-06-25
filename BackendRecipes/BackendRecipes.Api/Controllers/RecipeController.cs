@@ -1,5 +1,6 @@
 ﻿using BackendRecipes.Api.Dto;
 using BackendRecipes.Api.Сonverters;
+using BackendRecipes.Domain.Abstractions;
 using BackendRecipes.Domain.Recipe;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -12,10 +13,12 @@ namespace BackendRecipes.Api.Controllers
     {
         private IRecipeService _recipeService;
         private IRecipeConverter _recipeConverter;
-        public RecipeController(IRecipeService recipeService, IRecipeConverter recipeConverter)
+        private IUnitOfWork _unitOfWork;
+        public RecipeController(IRecipeService recipeService, IRecipeConverter recipeConverter, IUnitOfWork unitOfWork)
         {
             _recipeService = recipeService;
             _recipeConverter = recipeConverter;
+            _unitOfWork = unitOfWork;
         }
 
         [HttpGet]
@@ -40,6 +43,16 @@ namespace BackendRecipes.Api.Controllers
         {
             List<RecipeDto> recipes = _recipeService.SearchRecipes(category, searchText).ConvertAll(r => _recipeConverter.ConvertToRecipeDto(r));
             return Ok(recipes);
+        }
+
+        [HttpPost]
+        [Route("added")]
+        public IActionResult AddRecipe([FromBody] RecipeDto recipeDto)
+        {
+            Recipe recipe = _recipeConverter.ConvertToRecipe(recipeDto);
+            _recipeService.AddRecipe(recipe);
+            _unitOfWork.Commit();
+            return Ok();
         }
     }
 }

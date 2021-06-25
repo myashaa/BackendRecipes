@@ -56,5 +56,10 @@ namespace BackendRecipes.Infrastructure.Repositories
             }
             return null;
         }
+
+        public void AddNew(Recipe recipe)
+        {
+            Add(recipe);
+        }
     }
 }
