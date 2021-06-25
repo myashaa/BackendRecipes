@@ -2,12 +2,14 @@
 using BackendRecipes.Api.Сonverters;
 using BackendRecipes.Domain.Abstractions;
 using BackendRecipes.Domain.Recipe;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
 namespace BackendRecipes.Api.Controllers
 {
-    [Route( "" )]
+    [EnableCors("TheCodePolicy")]
+    [Route("api/[controller]")]
     [ApiController]
     public class RecipeController : ControllerBase
     {
@@ -19,10 +21,10 @@ namespace BackendRecipes.Api.Controllers
             _recipeService = recipeService;
             _recipeConverter = recipeConverter;
             _unitOfWork = unitOfWork;
-        }
+        }   
 
         [HttpGet]
-        [Route( "recipes" )]
+        [Route( "" )]
         public IActionResult GetAllRecipes()
         {
             List<RecipeDto> recipes = _recipeService.GetRecipes().ConvertAll(r => _recipeConverter.ConvertToRecipeDto(r));
@@ -30,7 +32,7 @@ namespace BackendRecipes.Api.Controllers
         }
 
         [HttpGet]
-        [Route("recipe/{id:long}")]
+        [Route("{id:long}")]
         public IActionResult GetRecipeById( long id )
         {
             RecipeDto recipe = _recipeConverter.ConvertToRecipeDto(_recipeService.GetRecipe(id));
@@ -38,7 +40,7 @@ namespace BackendRecipes.Api.Controllers
         }
 
         [HttpGet]
-        [Route("recipes/{category}/{searchText}")]
+        [Route("{category}/{searchText}")]
         public IActionResult SearchAllRecipes( string category, string searchText )
         {
             List<RecipeDto> recipes = _recipeService.SearchRecipes(category, searchText).ConvertAll(r => _recipeConverter.ConvertToRecipeDto(r));
@@ -46,7 +48,7 @@ namespace BackendRecipes.Api.Controllers
         }
 
         [HttpPost]
-        [Route("added")]
+        [Route("/add")]
         public IActionResult AddRecipe([FromBody] RecipeDto recipeDto)
         {
             Recipe recipe = _recipeConverter.ConvertToRecipe(recipeDto);

@@ -1,4 +1,5 @@
 ﻿using BackendRecipes.Domain.Recipe;
+using BackendRecipes.Infrastructure.Constans;
 using BackendRecipes.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -31,28 +32,28 @@ namespace BackendRecipes.Infrastructure.Repositories
 
         public IEnumerable<Recipe> SearchAll( string category, string searchText )
         {
-            if (category == "name") { 
-            return Entities
-                .Include(r => r.Ingredients)
-                .Include(r => r.Steps)
-                .Where(r => r.Name == searchText)
-                .ToList();
-            }
-            if (category == "tag")
+            switch (category)
             {
-                return Entities
-                    .Include(r => r.Ingredients)
-                    .Include(r => r.Steps)
-                    .Where(r => r.Tags == searchText)
-                    .ToList();
-            }
-            if (category == "author")
-            {
-                return Entities
-                    .Include(r => r.Ingredients)
-                    .Include(r => r.Steps)
-                    .Where(r => r.Author == searchText)
-                    .ToList();
+                case SearchConstans.name:
+                    return Entities
+                        .Include(r => r.Ingredients)
+                        .Include(r => r.Steps)
+                        .Where(r => r.Name == searchText)
+                        .ToList();
+                case SearchConstans.tag:
+                    return Entities
+                        .Include(r => r.Ingredients)
+                        .Include(r => r.Steps)
+                        .Where(r => r.Tags == searchText)
+                        .ToList();
+                case SearchConstans.author:
+                    return Entities
+                        .Include(r => r.Ingredients)
+                        .Include(r => r.Steps)
+                        .Where(r => r.Author == searchText)
+                        .ToList();
+                default:
+                    break;
             }
             return null;
         }

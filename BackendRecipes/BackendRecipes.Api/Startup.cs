@@ -24,6 +24,12 @@ namespace BackendRecipes.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices( IServiceCollection services )
         {
+            services.AddCors(options => options.AddPolicy("TheCodePolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
             services.AddControllers();
             services.AddScoped<IRecipeService, RecipeService>();
             services.AddScoped<IRecipeRepository, RecipeRepository>();
@@ -49,9 +55,11 @@ namespace BackendRecipes.Api
 
             app.UseAuthorization();
 
+            app.UseCors("TheCodePolicy");
+
             app.UseEndpoints( endpoints =>
              {
-                 endpoints.MapControllers();
+                 endpoints.MapControllers().RequireCors("TheCodePolicy");
              } );
         }
     }
