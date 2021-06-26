@@ -30,6 +30,12 @@ namespace BackendRecipes.Domain.Recipe
             return recipes.ToList();
         }
 
+        public Recipe GetFavoriteRecipe()
+        {
+            var recipe = _recipeRepository.GetFavorite();
+            return recipe;
+        }
+
         public void AddRecipe(Recipe recipe)
         {
             _recipeRepository.AddNew(recipe);

@@ -44,7 +44,7 @@ namespace BackendRecipes.Infrastructure.Repositories
                     return Entities
                         .Include(r => r.Ingredients)
                         .Include(r => r.Steps)
-                        .Where(r => r.Tags == searchText)
+                        .Where(r => r.Tags.Contains(searchText))
                         .ToList();
                 case SearchConstans.author:
                     return Entities
@@ -56,6 +56,15 @@ namespace BackendRecipes.Infrastructure.Repositories
                     break;
             }
             return null;
+        }
+
+        public Recipe GetFavorite()
+        {
+            var maxValue = Entities.Max(r => r.Likes);
+            return Entities
+                .Include(r => r.Ingredients)
+                .Include(r => r.Steps)
+                .FirstOrDefault(r => r.Likes == maxValue);
         }
 
         public void AddNew(Recipe recipe)

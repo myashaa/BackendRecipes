@@ -47,8 +47,16 @@ namespace BackendRecipes.Api.Controllers
             return Ok(recipes);
         }
 
+        [HttpGet]
+        [Route("favorite")]
+        public IActionResult GetRecipeOfDay()
+        {
+            RecipeDto recipe = _recipeConverter.ConvertToRecipeDto(_recipeService.GetFavoriteRecipe());
+            return Ok(recipe);
+        }
+
         [HttpPost]
-        [Route("/add")]
+        [Route("")]
         public IActionResult AddRecipe([FromBody] RecipeDto recipeDto)
         {
             Recipe recipe = _recipeConverter.ConvertToRecipe(recipeDto);
