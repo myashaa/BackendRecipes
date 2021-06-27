@@ -57,10 +57,19 @@ namespace BackendRecipes.Api.Controllers
 
         [HttpPost]
         [Route("")]
-        public IActionResult AddRecipe([FromBody] RecipeDto recipeDto)
+        public IActionResult AddNewRecipe([FromBody] RecipeDto recipeDto)
         {
             Recipe recipe = _recipeConverter.ConvertToRecipe(recipeDto);
             _recipeService.AddRecipe(recipe);
+            _unitOfWork.Commit();
+            return Ok();
+        }
+
+        [HttpDelete]
+        [Route("{id:long}")]
+        public IActionResult DeleteCurrentRecipe( long id )
+        {
+            _recipeService.DeleteRecipe(id);
             _unitOfWork.Commit();
             return Ok();
         }

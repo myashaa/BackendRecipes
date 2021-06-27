@@ -40,5 +40,10 @@ namespace BackendRecipes.Domain.Recipe
         {
             _recipeRepository.AddNew(recipe);
         }
+
+        public void DeleteRecipe( long id )
+        {
+            _recipeRepository.DeleteCurrent(id);
+        }
     }
 }

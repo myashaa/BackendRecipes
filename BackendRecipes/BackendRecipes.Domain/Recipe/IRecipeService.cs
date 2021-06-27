@@ -9,5 +9,6 @@ namespace BackendRecipes.Domain.Recipe
         List<Recipe> SearchRecipes( string category, string searchText );
         Recipe GetFavoriteRecipe();
         void AddRecipe(Recipe recipe);
+        void DeleteRecipe( long id );
     }
 }

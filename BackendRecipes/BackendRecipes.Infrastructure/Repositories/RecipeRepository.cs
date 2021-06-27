@@ -71,5 +71,14 @@ namespace BackendRecipes.Infrastructure.Repositories
         {
             Add(recipe);
         }
+
+        public void DeleteCurrent( long id )
+        {
+            var recipe = Entities
+                .Include(r => r.Ingredients)
+                .Include(r => r.Steps)
+                .FirstOrDefault(r => r.Id == id);
+            Delete(recipe);
+        }
     }
 }

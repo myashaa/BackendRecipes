@@ -9,5 +9,6 @@ namespace BackendRecipes.Domain.Recipe
         IEnumerable<Recipe> SearchAll( string category, string searchText );
         Recipe GetFavorite();
         void AddNew( Recipe recipe );
+        void DeleteCurrent( long id );
     }
 }
