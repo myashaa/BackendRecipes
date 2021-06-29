@@ -7,7 +7,7 @@ namespace BackendRecipes.Domain.Recipe
     {
         private IRecipeRepository _recipeRepository;
 
-        public RecipeService( IRecipeRepository recipeRepository )
+        public RecipeService(IRecipeRepository recipeRepository)
         {
             _recipeRepository = recipeRepository;
         }
@@ -18,13 +18,13 @@ namespace BackendRecipes.Domain.Recipe
             return recipes.ToList();
         }
 
-        public Recipe GetRecipe( long id )
+        public Recipe GetRecipe(long id)
         {
             var recipe = _recipeRepository.GetById(id);
             return recipe;
         }
 
-        public List<Recipe> SearchRecipes( string category, string searchText )
+        public List<Recipe> SearchRecipes(string category, string searchText)
         {
             var recipes = _recipeRepository.SearchAll(category, searchText);
             return recipes.ToList();
@@ -41,7 +41,7 @@ namespace BackendRecipes.Domain.Recipe
             _recipeRepository.AddNew(recipe);
         }
 
-        public void DeleteRecipe( long id )
+        public void DeleteRecipe(long id)
         {
             _recipeRepository.DeleteCurrent(id);
         }

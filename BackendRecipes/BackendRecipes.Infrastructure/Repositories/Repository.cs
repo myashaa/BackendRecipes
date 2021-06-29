@@ -10,24 +10,19 @@ namespace BackendRecipes.Infrastructure.Repositories
 
         private readonly DbContext DbContext;
 
-        public Repository( DbContext dbContext )
+        public Repository(DbContext dbContext)
         {
             DbContext = dbContext;
         }
 
-        public void Add( T item )
+        public void Add(T item)
         {
-            DbContext.Add( item );
+            DbContext.Add(item);
         }
 
-        public void Delete( T item )
+        public void Delete(T item)
         {
-            DbContext.Remove( item );
-        }
-
-        public void AddRange( IEnumerable<T> entities )
-        {
-            DbContext.AddRange( entities );
+            DbContext.Remove(item);
         }
     }
 }

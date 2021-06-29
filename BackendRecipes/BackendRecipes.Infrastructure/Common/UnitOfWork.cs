@@ -7,7 +7,7 @@ public class UnitOfWork<T> : IUnitOfWork
 {
     protected readonly T DbContext;
 
-    public UnitOfWork( T dbContext )
+    public UnitOfWork(T dbContext)
     {
         DbContext = dbContext;
     }

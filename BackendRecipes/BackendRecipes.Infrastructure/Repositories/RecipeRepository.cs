@@ -9,20 +9,20 @@ namespace BackendRecipes.Infrastructure.Repositories
 {
     public class RecipeRepository : Repository<Recipe>, IRecipeRepository
     {
-        public RecipeRepository( BackendRecipesDbContext dbContext )
-            :base( dbContext )
+        public RecipeRepository(BackendRecipesDbContext dbContext)
+            :base(dbContext)
         {
         }
 
         public IEnumerable<Recipe> GetAll()
         {
             return Entities
-                .Include( r => r.Ingredients )
+                .Include(r => r.Ingredients)
                 .Include(r => r.Steps)
                 .ToList();
         }
 
-        public Recipe GetById( long id )
+        public Recipe GetById(long id)
         {
             return Entities
                 .Include(r => r.Ingredients)
@@ -30,7 +30,7 @@ namespace BackendRecipes.Infrastructure.Repositories
                 .FirstOrDefault(r => r.Id == id);
         }
 
-        public IEnumerable<Recipe> SearchAll( string category, string searchText )
+        public IEnumerable<Recipe> SearchAll(string category, string searchText)
         {
             switch (category)
             {
@@ -72,7 +72,7 @@ namespace BackendRecipes.Infrastructure.Repositories
             Add(recipe);
         }
 
-        public void DeleteCurrent( long id )
+        public void DeleteCurrent(long id)
         {
             var recipe = Entities
                 .Include(r => r.Ingredients)

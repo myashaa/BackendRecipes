@@ -14,7 +14,7 @@ namespace BackendRecipes.Api
 {
     public class Startup
     {
-        public Startup( IConfiguration configuration )
+        public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -22,7 +22,7 @@ namespace BackendRecipes.Api
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices( IServiceCollection services )
+        public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options => options.AddPolicy("TheCodePolicy", builder =>
             {
@@ -34,17 +34,17 @@ namespace BackendRecipes.Api
             services.AddScoped<IRecipeService, RecipeService>();
             services.AddScoped<IRecipeRepository, RecipeRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork<BackendRecipesDbContext>>();
-            services.AddDbContext<BackendRecipesDbContext>( c => 
-                c.UseSqlServer( Configuration.GetConnectionString( "DefaultConnection" ) )
+            services.AddDbContext<BackendRecipesDbContext>(c => 
+                c.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
             );
             services.AddScoped<IRecipeConverter, RecipeConverter>();
            // services.AddSingleton<IRecipeRepository, MemoryRecipeRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure( IApplicationBuilder app, IWebHostEnvironment env )
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if ( env.IsDevelopment() )
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -57,10 +57,10 @@ namespace BackendRecipes.Api
 
             app.UseCors("TheCodePolicy");
 
-            app.UseEndpoints( endpoints =>
+            app.UseEndpoints(endpoints =>
              {
                  endpoints.MapControllers().RequireCors("TheCodePolicy");
-             } );
+             });
         }
     }
 }
