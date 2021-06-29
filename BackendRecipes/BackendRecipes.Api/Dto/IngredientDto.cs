@@ -3,6 +3,6 @@
     public class IngredientDto
     {
         public string Title { get; set; }
-        public string Items { get; set; }
+        public string[] Items { get; set; }
     }
 }

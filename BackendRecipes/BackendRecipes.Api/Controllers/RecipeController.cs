@@ -21,27 +21,27 @@ namespace BackendRecipes.Api.Controllers
             _recipeService = recipeService;
             _recipeConverter = recipeConverter;
             _unitOfWork = unitOfWork;
-        }   
+        }
 
         [HttpGet]
-        [Route( "" )]
+        [Route("")]
         public IActionResult GetAllRecipes()
         {
             List<RecipeDto> recipes = _recipeService.GetRecipes().ConvertAll(r => _recipeConverter.ConvertToRecipeDto(r));
-            return Ok( recipes );
+            return Ok(recipes);
         }
 
         [HttpGet]
         [Route("{id:long}")]
-        public IActionResult GetRecipeById( long id )
+        public IActionResult GetRecipeById(long id)
         {
             RecipeDto recipe = _recipeConverter.ConvertToRecipeDto(_recipeService.GetRecipe(id));
-            return Ok( recipe );
+            return Ok(recipe);
         }
 
         [HttpGet]
         [Route("{category}/{searchText}")]
-        public IActionResult SearchAllRecipes( string category, string searchText )
+        public IActionResult SearchAllRecipes(string category, string searchText)
         {
             List<RecipeDto> recipes = _recipeService.SearchRecipes(category, searchText).ConvertAll(r => _recipeConverter.ConvertToRecipeDto(r));
             return Ok(recipes);
@@ -67,9 +67,19 @@ namespace BackendRecipes.Api.Controllers
 
         [HttpDelete]
         [Route("{id:long}")]
-        public IActionResult DeleteCurrentRecipe( long id )
+        public IActionResult DeleteCurrentRecipe(long id)
         {
             _recipeService.DeleteRecipe(id);
+            _unitOfWork.Commit();
+            return Ok();
+        }
+
+        [HttpPut]
+        [Route("{id:long}")]
+        public IActionResult UpdateCurrentRecipe([FromBody] RecipeDto recipeDto)
+        {
+            Recipe recipe = _recipeConverter.ConvertToRecipe(recipeDto);
+            _recipeService.UpdateRecipe(recipe);
             _unitOfWork.Commit();
             return Ok();
         }

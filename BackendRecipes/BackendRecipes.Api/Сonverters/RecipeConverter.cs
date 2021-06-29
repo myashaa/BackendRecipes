@@ -1,5 +1,7 @@
 ﻿using BackendRecipes.Api.Dto;
 using BackendRecipes.Domain.Recipe;
+using System;
+using System.Text;
 
 namespace BackendRecipes.Api.Сonverters
 {
@@ -12,7 +14,7 @@ namespace BackendRecipes.Api.Сonverters
                 Id = recipe.Id,
                 ImageUrl = recipe.ImageUrl,
                 Author = recipe.Author,
-                Tags = recipe.Tags,
+                Tags = recipe.Tags.Split(";"),
                 Favorites = recipe.Favorites,
                 Likes = recipe.Likes,
                 Name = recipe.Name,
@@ -28,7 +30,7 @@ namespace BackendRecipes.Api.Сonverters
             return new IngredientDto
             {
                 Title = ingredient.Title,
-                Items = ingredient.Items
+                Items = ingredient.Items.Split(";")
             };
         }
         private StepDto ConvertToStepDto(Step step)
@@ -46,7 +48,7 @@ namespace BackendRecipes.Api.Сonverters
                 Id = recipeDto.Id,
                 ImageUrl = recipeDto.ImageUrl,
                 Author = recipeDto.Author,
-                Tags = recipeDto.Tags,
+                Tags = string.Join(";", recipeDto.Tags),
                 Favorites = recipeDto.Favorites,
                 Likes = recipeDto.Likes,
                 Name = recipeDto.Name,
@@ -62,8 +64,8 @@ namespace BackendRecipes.Api.Сonverters
             return new Ingredient
             {
                 Title = ingredientDto.Title,
-                Items = ingredientDto.Items
-            };
+                Items = string.Join(";", ingredientDto.Items)
+        };
         }
         private Step ConvertToStep(StepDto stepDto)
         {

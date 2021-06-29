@@ -80,5 +80,21 @@ namespace BackendRecipes.Infrastructure.Repositories
                 .FirstOrDefault(r => r.Id == id);
             Delete(recipe);
         }
+
+        public void UpdateCurrent(Recipe recipe)
+        {
+            var recipeFromDatabase = GetById(recipe.Id);
+            recipeFromDatabase.ImageUrl = recipe.ImageUrl;
+            recipeFromDatabase.Author = recipe.Author;
+            recipeFromDatabase.Tags = recipe.Tags;
+            recipeFromDatabase.Favorites = recipe.Favorites;
+            recipeFromDatabase.Likes = recipe.Likes;
+            recipeFromDatabase.Name = recipe.Name;
+            recipeFromDatabase.Description = recipe.Description;
+            recipeFromDatabase.CookingTimeInMinutes = recipe.CookingTimeInMinutes;
+            recipeFromDatabase.TotalPersons = recipe.TotalPersons;
+            recipeFromDatabase.Ingredients = recipe.Ingredients;
+            recipeFromDatabase.Steps = recipe.Steps;
+        }
     }
 }

@@ -10,5 +10,6 @@ namespace BackendRecipes.Domain.Recipe
         Recipe GetFavoriteRecipe();
         void AddRecipe(Recipe recipe);
         void DeleteRecipe( long id );
+        void UpdateRecipe(Recipe recipe);
     }
 }
