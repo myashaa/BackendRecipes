@@ -7,7 +7,7 @@ namespace BackendRecipes.Api.Dto
         public long Id { get; set; }
         public string ImageUrl { get; set; }
         public string Author { get; set; }
-        public string Tags { get; set; }
+        public string[] Tags { get; set; }
         public long Favorites { get; set; }
         public long Likes { get; set; }
         public string Name { get; set; }

@@ -6,13 +6,13 @@ namespace BackendRecipes.Infrastructure.Configurations
 {
     public class IngredientConfiguration : IEntityTypeConfiguration<Ingredient>
     {
-        public void Configure( EntityTypeBuilder<Ingredient> builder )
+        public void Configure(EntityTypeBuilder<Ingredient> builder)
         {
-            builder.ToTable( nameof( Ingredient ) ).HasKey( t => t.Id );
+            builder.ToTable(nameof(Ingredient)).HasKey(t => t.Id);
             builder
-                .HasOne( i => i.Recipe )
-                .WithMany( r => r.Ingredients )
-                .HasForeignKey( i => i.RecipeId );
+                .HasOne(i => i.Recipe)
+                .WithMany(r => r.Ingredients)
+                .HasForeignKey(i => i.RecipeId);
         }
     }
 }

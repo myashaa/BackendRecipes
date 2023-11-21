@@ -5,14 +5,14 @@ namespace BackendRecipes.Infrastructure.Context
 {
     public class BackendRecipesDbContext : DbContext
     {
-        public BackendRecipesDbContext( DbContextOptions<BackendRecipesDbContext> options ) : base( options )
+        public BackendRecipesDbContext(DbContextOptions<BackendRecipesDbContext> options) : base(options)
         {
         }
 
-        protected override void OnModelCreating( ModelBuilder modelBuilder )
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration( new RecipeConfiguration() );
-            modelBuilder.ApplyConfiguration( new IngredientConfiguration() );
+            modelBuilder.ApplyConfiguration(new RecipeConfiguration());
+            modelBuilder.ApplyConfiguration(new IngredientConfiguration());
             modelBuilder.ApplyConfiguration(new StepConfiguration());
         }
     }
